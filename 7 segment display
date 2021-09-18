@@ -1,0 +1,129 @@
+7 segment display
+//Name: Muad Abdinur
+//Program title: 
+//This program creates a clock that goes from 1-99
+const int A=9;
+const int B=10;
+const int C=11;
+const int D=12;
+void setup() 
+{
+pinMode(9,OUTPUT);
+pinMode(10,OUTPUT);
+pinMode(11,OUTPUT);
+pinMode(12,OUTPUT);
+  
+pinMode(2,OUTPUT);
+pinMode(3,OUTPUT);
+Serial.begin(9600);
+}
+int count = 0;
+void loop() {
+  Serial.println(count);
+    delay(10); //the delay 
+  int first_display_number=count/10; //First display towards display 1
+  int second_display_number=count%10;//Second display towards display 2
+  
+  to_BCD(second_display_number); 
+  count++;
+  
+  digitalWrite(3, HIGH);		//set second display high
+  delay(100);
+  to_BCD(first_display_number);
+  
+  digitalWrite(3, LOW);
+  digitalWrite(2, HIGH);		// set first display high
+  delay(300);
+  digitalWrite(2,LOW);
+  if (count == 100)
+    count = 0;
+
+  
+}
+
+
+void to_BCD(int countBCD)
+{
+    if (countBCD == 0) //write 0000
+	{
+      digitalWrite(A, LOW);
+      digitalWrite(B, LOW);
+      digitalWrite(C, LOW);
+      digitalWrite(D, LOW);
+    }
+    
+    if (countBCD == 1) //write 0001
+	{
+      digitalWrite(A, HIGH);
+      digitalWrite(B, LOW);
+      digitalWrite(C, LOW);
+      digitalWrite(D, LOW);
+    }
+    
+    if (countBCD == 2) //write 0010
+	{
+      digitalWrite(A, LOW);
+      digitalWrite(B, HIGH);
+      digitalWrite(C, LOW);
+      digitalWrite(D, LOW);
+    }
+    
+    if (countBCD == 3) //write 0011
+	{
+      digitalWrite(A, HIGH);
+      digitalWrite(B, HIGH);
+      digitalWrite(C, LOW);
+      digitalWrite(D, LOW);
+    }
+    
+    if (countBCD == 4) //write 0100
+	{
+      digitalWrite(A, LOW);
+      digitalWrite(B, LOW);
+      digitalWrite(C, HIGH);
+      digitalWrite(D, LOW);
+    }
+    
+    if (countBCD == 5) //write 0101
+	{
+      digitalWrite(A, HIGH);
+      digitalWrite(B, LOW);
+      digitalWrite(C, HIGH);
+      digitalWrite(D, LOW);
+    }
+    
+    if (countBCD == 6) //write 0110
+	{
+      digitalWrite(A, LOW);
+      digitalWrite(B, HIGH);
+      digitalWrite(C, HIGH);
+      digitalWrite(D, LOW);
+    }
+    
+    if (countBCD == 7) //write 0111
+	{
+      digitalWrite(A, HIGH);
+      digitalWrite(B, HIGH);
+      digitalWrite(C, HIGH);
+      digitalWrite(D, LOW);
+    }
+    
+    if (countBCD == 8) //write 1000
+	{
+      digitalWrite(A, LOW);
+      digitalWrite(B, LOW);
+      digitalWrite(C, LOW);
+      digitalWrite(D, HIGH);
+    }
+    
+    if (countBCD == 9) //write 1001
+	{
+      digitalWrite(A, HIGH);
+      digitalWrite(B, LOW);
+      digitalWrite(C, LOW);
+      digitalWrite(D, HIGH);
+    } 
+}
+
+
+
