@@ -1,5 +1,5 @@
-Serial Wack a Mole
-//Program title: Relflex tester
+Serial Whack a Mole
+//Program title: Reflex tester
 //This program creates a wack a mole type game
 //when only a single green LED flashes press the 
 //button and the blue LED will light up
